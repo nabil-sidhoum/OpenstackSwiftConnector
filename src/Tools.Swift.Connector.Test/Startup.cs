@@ -16,7 +16,6 @@ namespace Tools.Swift.Test
             services.AddSingleton(configuration);
 
             services.AddSwiftClient(configuration);
-            // services.TryAddTransient<ISwiftClient, OVHSwiftClient>();
 
             return services;
         }
