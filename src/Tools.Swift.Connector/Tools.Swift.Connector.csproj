@@ -2,6 +2,19 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
+
+		<!-- Infos NuGet -->
+		<PackageId>Tools.Swift.Connector</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Nabil Sidhoum</Authors>
+		<Company>Nabil Sidhoum</Company>
+		<Description>Connecteur léger pour l'API REST OpenStack Swift.</Description>
+		<PackageTags>OVH;Swift;Connector;API</PackageTags>
+		<RepositoryUrl>https://github.com/nabil-sidhoum/OpenstackSwiftConnector</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+		<!-- Génére automatiquement le package lors du build -->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
