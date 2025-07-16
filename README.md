@@ -1,21 +1,27 @@
-# SwiftConnector pour .Net 8
+# SwiftConnector pour .NET 8
 
-***SwiftConnector*** est un connecteur HTTP asynchrone qui permet de se connecter à l'API REST [OpenStack Swift](http://developer.openstack.org/api-ref-objectstorage-v1.html). 
+**SwiftConnector** est un connecteur HTTP asynchrone permettant de se connecter à l'API REST [OpenStack Swift](http://developer.openstack.org/api-ref-objectstorage-v1.html).
 
-Ce projet a été utilisé pour se connecter à l'espace de stockage OpenStack Swift d'un client hébergé par OVH. Pour utiliser ce connecteur, il suffit d'ajouter cette section dans votre fichier ***appsettings.json*** en y renseignant les informations d'authentification de votre espace de stockage.
+Ce projet a été conçu pour interagir avec l’espace de stockage OpenStack Swift d’un client, hébergé par **OVH**.
+
+## 🛠️ Configuration
+
+Pour utiliser ce connecteur, ajoutez la section suivante dans votre fichier `appsettings.json` en remplissant les informations d’authentification :
 
 ```json
-  "SwiftAuthentication": {
-    "Authurl": "",
-    "Username": "",
-    "Password": "",
-    "Region": ""
-  }
+"SwiftAuthentication": {
+  "Authurl": "",
+  "Username": "",
+  "Password": "",
+  "Region": ""
+}
 ```
 
-Enfin, il suffit d'enregistrer le connecteur comme service dans ***IServiceCollection***.La méthode d'extension ***AddSwiftClient*** requiert comme paramètre toutes les propriétés de configuration d'application ***IConfiguration*** pour obtenir toutes les informations d'authentification.
+## 🔧 Enregistrement du service
 
-```cs
+Enregistrez ensuite le connecteur comme service via la méthode d’extension `AddSwiftClient`, qui nécessite une instance de `IConfiguration` pour accéder aux paramètres :
+
+```csharp
 public IConfiguration Configuration { get; }
 
 public void ConfigureServices(IServiceCollection services)
@@ -23,4 +29,19 @@ public void ConfigureServices(IServiceCollection services)
   services.AddSwiftClient(Configuration);
 }
 ```
-Une fois la configuration précédente effectuée, il suffit d'une instance de ***ISwiftClient*** pour accéder à tous les conteneurs auxquels vous avez accès, ainsi que pour connaître tous les fichiers présents dans ces conteneurs et ajouter de nouveaux fichiers.
+
+## 🚀 Utilisation
+
+Une fois la configuration terminée, injectez simplement une instance de `ISwiftClient` pour :
+
+- Lister les conteneurs disponibles
+- Parcourir les fichiers stockés
+- Ajouter de nouveaux fichiers dans les conteneurs
+
+## 📦 Packages NuGet
+
+| 📁 Package | 🧾 Version | 📥 Installation |
+|------------|------------|------------------|
+| `Tools.Swift.Connector` | [![NuGet](https://img.shields.io/nuget/v/Tools.Swift.Connector.svg)](https://www.nuget.org/packages/Tools.Swift.Connector) | `dotnet add package Tools.Swift.Connector` |
+
+---
